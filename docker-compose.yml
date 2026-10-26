@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    container_name: wired-table-web
+    restart: unless-stopped
+    environment:
+      API_URL: ${API_URL}
+    ports:
+      - "${PORT:-3000}:3000"

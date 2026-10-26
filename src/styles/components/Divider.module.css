@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  span {
+    font: var(--text-label);
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  &::before {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: var(--border);
+    border-radius: var(--radius-full);
+  }
+}
+
+.withLabel {
+  &::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: var(--border);
+    border-radius: var(--radius-full);
+  }
+}

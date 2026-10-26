@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-lg);
+  background-color: var(--surface);
+  border-radius: var(--radius-xl);
+  border: var(--border-style) var(--border);
+  box-shadow: var(--shadow-style-lg) var(--border);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+}

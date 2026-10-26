@@ -1,0 +1,69 @@
+:root {
+  --color-coral: #ff9e80;
+  --color-coral-deep: #e07a5c;
+  --color-coral-tint: #ff9e8040;
+
+  --color-red: #f59393;
+  --color-red-deep: #d96a6a;
+  --color-red-tint: #f5939340;
+
+  --color-green: #8fd9b6;
+  --color-green-deep: #5fb88e;
+  --color-green-tint: #8fd9b640;
+
+  --color-cocoa: #4b3b36;
+  --color-cinnamon: #8a7268;
+  --color-biscuit: #f0e2cf;
+  --color-cream: #fff7ec;
+  --color-white: #ffffff;
+
+  --bg: var(--color-cream);
+  --surface: var(--color-white);
+
+  --text: var(--color-cocoa);
+  --text-muted: var(--color-cinnamon);
+
+  --border: var(--color-biscuit);
+
+  --accent: var(--color-coral);
+  --accent-deep: var(--color-coral-deep);
+  --accent-tint: var(--color-coral-tint);
+
+  --success: var(--color-green);
+  --success-deep: var(--color-green-deep);
+  --success-tint: var(--color-green-tint);
+
+  --error: var(--color-red);
+  --error-deep: var(--color-red-deep);
+  --error-tint: var(--color-red-tint);
+
+  --text-h1: 800 56px var(--m-plus-sans);
+  --text-h2: 800 36px var(--m-plus-sans);
+  --text-h3: 700 24px var(--m-plus-sans);
+  --text-body: 400 16px var(--m-plus-sans);
+  --text-label: 700 14px var(--m-plus-sans);
+  --text-system: 500 12px var(--m-plus-sans);
+
+  --text-button-sm: 800 12px var(--m-plus-sans);
+  --text-button-md: 800 16px var(--m-plus-sans);
+  --text-button-lg: 800 20px var(--m-plus-sans);
+
+  --text-control: 700 16px var(--m-plus-sans);
+
+  --border-style: 3px solid;
+  --shadow-style: 0 4px 0;
+  --shadow-style-lg: 0 6px 0;
+
+  --radius-xs: 4px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+}
