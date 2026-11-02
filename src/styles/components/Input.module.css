@@ -1,42 +1,66 @@
-.inputWrapper {
+.root {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.input {
-  height: 46px;
-  padding: 0px var(--space-md);
-  border: var(--border-style) var(--border);
-  border-radius: var(--radius-md);
-  background-color: var(--bg);
-  font: var(--text-body);
-  color: var(--text);
-  outline: 0px solid transparent;
-  box-sizing: border-box;
-
-  &::placeholder {
-    color: var(--text-muted);
-  }
-
-  &:focus {
-    border: var(--border-style) var(--accent);
-    outline: 4px solid var(--accent-tint);
-    transition:
-      outline 0.12s ease,
-      border 0.12s ease;
-  }
-}
-
-.error {
-  background-color: var(--error-tint);
-  border: var(--border-style) var(--error-deep);
+  gap: var(--space-sm);
 }
 
 .label {
   font: var(--text-label);
   color: var(--text);
   text-transform: uppercase;
+}
+
+.input {
+  /* State hooks: modifiers below only swap these */
+  --input-bg: var(--color-oat);
+  --input-thread: transparent;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  padding: 0 var(--space-md);
+
+  font: var(--text-body);
+  color: var(--text);
+
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--sunken);
+
+  /* Tinted wash over a paper texture, multiplied onto the base color */
+  background:
+    linear-gradient(color-mix(in srgb, var(--input-bg) 80%, transparent)),
+    var(--texture-paper), var(--input-bg);
+  background-blend-mode: normal, multiply;
+
+  outline: var(--thread-width) dashed var(--input-thread);
+  outline-offset: 4px;
+
+  transition:
+    background-color var(--duration-fast) ease-out,
+    outline-color var(--duration-fast) ease-out;
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:focus {
+    --input-thread: var(--accent);
+  }
+
+  &:disabled {
+    --input-bg: var(--color-linen);
+
+    color: var(--text-muted);
+    box-shadow: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  --input-bg: color-mix(in srgb, var(--error) 15%, var(--surface));
+  --input-thread: var(--error-deep);
 }
 
 .errorMsg {

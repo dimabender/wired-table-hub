@@ -2,7 +2,7 @@ import { clsx } from "@/lib/utils";
 import { ButtonHTMLAttributes } from "react";
 import styles from "@/styles/components/Button.module.css";
 
-type Variant = "primary" | "secondary" | "danger";
+type Variant = "primary" | "secondary" | "silent" | "danger";
 type Size = "sm" | "md" | "lg";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,7 +21,7 @@ export default function Button(props: Props) {
 
   return (
     <button
-      className={clsx(styles.button, styles[variant], styles[size], className)}
+      className={clsx(styles.root, styles[variant], styles[size], className)}
       {...other}
     >
       {children}

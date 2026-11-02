@@ -1,42 +1,38 @@
 :root {
-  --color-coral: #ff9e80;
-  --color-coral-deep: #e07a5c;
-  --color-coral-tint: #ff9e8040;
+  /* Palette */
+  --color-cornflower: #4e6ce8;
+  --color-cobalt: #3a55c9;
 
-  --color-red: #f59393;
-  --color-red-deep: #d96a6a;
-  --color-red-tint: #f5939340;
+  --color-jade: #3bb78a;
+  --color-pine: #2e9c74;
 
-  --color-green: #8fd9b6;
-  --color-green-deep: #5fb88e;
-  --color-green-tint: #8fd9b640;
+  --color-tomato: #e0564e;
+  --color-brick: #c2443d;
 
-  --color-cocoa: #4b3b36;
-  --color-cinnamon: #8a7268;
-  --color-biscuit: #f0e2cf;
-  --color-cream: #fff7ec;
-  --color-white: #ffffff;
+  --color-ivory: #fbf7ee;
+  --color-linen: #ede6d8;
+  --color-oat: #e4dccb;
 
-  --bg: var(--color-cream);
-  --surface: var(--color-white);
+  --color-espresso: #26221f;
+  --color-taupe: #5f5852;
 
-  --text: var(--color-cocoa);
-  --text-muted: var(--color-cinnamon);
+  /* Semantic colors */
+  --bg: var(--color-linen);
+  --surface: var(--color-ivory);
 
-  --border: var(--color-biscuit);
+  --text: var(--color-espresso);
+  --text-muted: var(--color-taupe);
 
-  --accent: var(--color-coral);
-  --accent-deep: var(--color-coral-deep);
-  --accent-tint: var(--color-coral-tint);
+  --accent: var(--color-cornflower);
+  --accent-deep: var(--color-cobalt);
 
-  --success: var(--color-green);
-  --success-deep: var(--color-green-deep);
-  --success-tint: var(--color-green-tint);
+  --success: var(--color-jade);
+  --success-deep: var(--color-pine);
 
-  --error: var(--color-red);
-  --error-deep: var(--color-red-deep);
-  --error-tint: var(--color-red-tint);
+  --error: var(--color-tomato);
+  --error-deep: var(--color-brick);
 
+  /* Typography */
   --text-h1: 800 56px var(--m-plus-sans);
   --text-h2: 800 36px var(--m-plus-sans);
   --text-h3: 700 24px var(--m-plus-sans);
@@ -50,10 +46,7 @@
 
   --text-control: 700 16px var(--m-plus-sans);
 
-  --border-style: 3px solid;
-  --shadow-style: 0 4px 0;
-  --shadow-style-lg: 0 6px 0;
-
+  /* Radii */
   --radius-xs: 4px;
   --radius-sm: 12px;
   --radius-md: 16px;
@@ -61,9 +54,50 @@
   --radius-xl: 32px;
   --radius-full: 9999px;
 
+  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
   --space-xl: 64px;
+
+  /* Shadows */
+  --shade: 70 50 30;
+
+  --elevation-1:
+    0 1px 1px rgb(var(--shade) / 0.16), 0 2px 4px rgb(var(--shade) / 0.1);
+  --elevation-2:
+    0 1px 1px rgb(var(--shade) / 0.14), 0 3px 6px rgb(var(--shade) / 0.12),
+    0 14px 22px -10px rgb(var(--shade) / 0.3);
+  --elevation-3:
+    0 2px 2px rgb(var(--shade) / 0.12), 0 8px 12px rgb(var(--shade) / 0.12),
+    0 26px 38px -14px rgb(var(--shade) / 0.4);
+
+  --pressed:
+    inset 0 2px 6px rgb(var(--shade) / 0.3),
+    inset 0 1px 1px rgb(var(--shade) / 0.24), 0 1px 0 rgb(255 255 255 / 0.65);
+  --sunken:
+    inset 0 2px 3px rgb(var(--shade) / 0.16),
+    inset 0 1px 1px rgb(var(--shade) / 0.14), 0 1px 0 rgb(255 255 255 / 0.8);
+  --rim:
+    inset 0 1px 0 rgb(255 255 255 / 0.5), inset 0 -1px 0 rgb(var(--shade) / 0.1);
+
+  /* Threads */
+  --thread-width: 1.5px;
+  --thread-light: color-mix(in srgb, var(--color-ivory) 92%, transparent);
+  --thread-dark: rgb(var(--shade) / 0.5);
+  --thread-cast: drop-shadow(0 1px 0 rgb(var(--shade) / 0.5));
+  --thread-glint: drop-shadow(0 1px 0 rgb(255 255 255 / 0.8));
+
+  /* Textures */
+  --texture-felt: url("/textures/felt.png") 0 0 / 320px;
+  --texture-linen: url("/textures/linen.png") 0 0 / 640px;
+  --texture-cardboard: url("/textures/cardboard.png") 0 0 / 320px;
+  --texture-paper: url("/textures/paper.png") 0 0 / 480px;
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 80ms;
+  --duration-base: 250ms;
+  --duration-slow: 320ms;
 }
