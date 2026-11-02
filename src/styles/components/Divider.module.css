@@ -12,9 +12,7 @@
   &::before {
     content: "";
     flex: 1;
-    height: 2px;
-    background-color: var(--border);
-    border-radius: var(--radius-full);
+    border-top: var(--thread-width) dashed var(--text-muted);
   }
 }
 
@@ -22,8 +20,6 @@
   &::after {
     content: "";
     flex: 1;
-    height: 2px;
-    background-color: var(--border);
-    border-radius: var(--radius-full);
+    border-top: var(--thread-width) dashed var(--text-muted);
   }
 }

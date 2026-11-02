@@ -1,102 +1,143 @@
 .root {
   position: fixed;
-  bottom: var(--space-md);
   right: var(--space-md);
+  bottom: var(--space-md);
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
 }
 
+/* Toast card */
+
 .toast {
+  --overlay: var(--texture-paper);
+  --stitch-inset: 6px;
+
+  position: relative;
+  isolation: isolate;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-md);
   box-sizing: border-box;
-  background-color: var(--surface);
-  border: var(--border-style) var(--bc);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-style) var(--bc);
-  animation: toast-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  width: 320px;
+  padding: var(--space-md);
 
+  color: var(--text);
+  background-color: var(--color-linen);
+  border-radius: var(--radius-md);
+  box-shadow: var(--elevation-3), var(--rim);
+
+  animation: toast-in var(--duration-base) var(--ease-spring) both;
+
+  /* Dashed stitching inset from the edge */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: var(--stitch-inset);
+    border: var(--thread-width) dashed var(--thread-dark);
+    border-radius: calc(var(--radius-md) - var(--stitch-inset));
+    filter: var(--thread-glint);
+    pointer-events: none;
+  }
+
+  /* Icon + message group */
   & > div {
+    flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: var(--space-sm);
   }
 }
 
+.leaving {
+  animation: toast-out var(--duration-base) var(--ease-spring) both;
+}
+
+/* Contents */
+
 .icon {
+  --overlay: var(--texture-felt);
+
+  flex-shrink: 0;
+  position: relative;
+  isolation: isolate;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--c);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-style) var(--bc);
+  width: 36px;
+  height: 36px;
+
   font: var(--text-control);
-  color: var(--text);
-  transform: rotate(-8deg);
-  animation: icon-pop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  color: var(--color-ivory);
+  background-color: var(--icon-color);
+  border-radius: var(--radius-full);
+  box-shadow:
+    0 2px 0 var(--icon-edge),
+    var(--elevation-1),
+    var(--rim);
+
+  animation: icon-pop var(--duration-base) var(--ease-spring) both;
 }
 
 .message {
   font: var(--text-control);
-  color: var(--text);
 }
 
 .button {
-  width: 32px;
-  height: 32px;
-  font: var(--text-control);
+  width: 28px;
+  height: 28px;
+  font: var(--text-system);
+  color: var(--text);
+  background-color: transparent;
   border: none;
   border-radius: var(--radius-sm);
-  color: var(--text);
-  background-color: var(--bbg);
   cursor: pointer;
 }
 
-.leaving {
-  animation: toast-out 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+/* Texture overlay shared by the card and the icon */
+.toast::after,
+.icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--overlay);
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
+/* Variants */
+
 .info {
-  --c: var(--accent);
-  --bc: var(--accent-deep);
-  --bbg: var(--accent-tint);
+  --icon-color: var(--accent);
+  --icon-edge: var(--accent-deep);
 }
 
 .success {
-  --c: var(--success);
-  --bc: var(--success-deep);
-  --bbg: var(--success-tint);
+  --icon-color: var(--success);
+  --icon-edge: var(--success-deep);
 }
 
 .error {
-  --c: var(--error);
-  --bc: var(--error-deep);
-  --bbg: var(--error-tint);
+  --icon-color: var(--error);
+  --icon-edge: var(--error-deep);
 }
+
+/* Animations: omitted keyframes fall back to the element's own styles */
 
 @keyframes toast-in {
   from {
     opacity: 0;
     transform: translateY(64px) scale(0.8);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 @keyframes toast-out {
-  from {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
   to {
     opacity: 0;
     transform: translateX(64px) scale(0.8);
@@ -104,13 +145,7 @@
 }
 
 @keyframes icon-pop {
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
   50% {
     transform: scale(1.3);
-  }
-  100% {
-    transform: scale(1) rotate(-8deg);
   }
 }

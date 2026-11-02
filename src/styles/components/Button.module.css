@@ -1,79 +1,166 @@
-.button {
+.root {
+  --edge: 3px;
+  --stitch-inset: 6px;
+
+  /* Shadow parts */
+  --btn-edge-offset: var(--edge);
+  --btn-elevation: var(--elevation-2);
+  --btn-inset: var(--rim);
+  --btn-shadow:
+    0 var(--btn-edge-offset) 0 var(--btn-edge-color), var(--btn-elevation),
+    var(--btn-inset);
+
+  isolation: isolate;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  border: none;
   box-sizing: border-box;
+  width: 100%;
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  margin-bottom: var(--edge);
+  border: none;
+  border-radius: var(--btn-radius);
+  background-color: var(--btn-bg);
+  box-shadow: var(--btn-shadow);
+  color: var(--btn-color);
+  font: var(--btn-font);
   cursor: pointer;
-  margin-bottom: 4px;
+  transition-property: transform, box-shadow, background-color;
+  transition-duration: var(--duration-base);
+  transition-timing-function: ease-out;
 
-  background: var(--bg);
-  box-shadow: var(--bs);
-  height: var(--h);
-  padding: var(--p);
-  border-radius: var(--br);
-  font: var(--f);
-  color: var(--text);
-
-  &:hover {
-    filter: brightness(1.05);
+  /* Stitching */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: var(--stitch-inset);
+    border: var(--thread-width) dashed var(--thread-light);
+    border-radius: calc(var(--btn-radius) - var(--stitch-inset));
+    filter: var(--thread-cast);
+    pointer-events: none;
   }
 
-  &:active {
-    transform: translateY(calc(var(--d) - 1px));
-    box-shadow: 0 1px 0 var(--accent-deep);
-    transition-duration: 0.05s;
+  /* Material texture */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--btn-texture);
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &:enabled:hover {
+    --btn-elevation: var(--elevation-3);
+
+    transform: translateY(-3px) rotate(-0.5deg);
+    transition-timing-function: var(--ease-spring);
+  }
+
+  &:enabled:active {
+    --btn-edge-offset: 0px;
+    --btn-elevation: 0 0 transparent, 0 0 transparent, 0 0 transparent;
+    --btn-inset: var(--pressed);
+
+    transform: translateY(var(--edge));
+    background-color: color-mix(in srgb, var(--btn-bg), rgb(var(--shade)) 6%);
+    transition-duration: var(--duration-fast);
   }
 
   &:disabled {
-    opacity: 0.4;
+    --btn-color: var(--text-muted);
+    --btn-bg: var(--color-oat);
+    --btn-shadow: var(--sunken);
+
+    margin-bottom: 0;
     cursor: not-allowed;
+    text-decoration: none;
+
+    &::before,
+    &::after {
+      content: none;
+    }
   }
 }
 
+/* Variants */
+
 .primary {
-  --bg: var(--accent);
-  --bs: var(--shadow-style) var(--accent-deep);
+  --btn-color: var(--color-ivory);
+  --btn-bg: var(--accent);
+  --btn-edge-color: var(--accent-deep);
+  --btn-texture: var(--texture-felt);
 }
 
 .secondary {
-  --bg: transparent;
-  --bs: var(--shadow-style) var(--border);
-  border: var(--border-style) var(--border);
+  --btn-color: var(--text);
+  --btn-bg: var(--color-linen);
+  --btn-edge-color: var(--color-oat);
+  --btn-texture: var(--texture-paper);
+
+  &::before {
+    content: none;
+  }
+}
+
+.silent {
+  --btn-color: var(--text);
+  --btn-bg: transparent;
+  --btn-shadow: none;
+
+  margin-bottom: 0;
+  text-decoration: underline dashed var(--text) 1.5px;
+  text-underline-offset: 4px;
+  transition: none;
+
+  &::before,
+  &::after {
+    content: none;
+  }
+
+  &:enabled:hover {
+    --btn-bg: var(--color-oat);
+
+    transform: none;
+  }
+
+  &:enabled:active {
+    --btn-shadow: var(--pressed);
+
+    text-decoration: none;
+  }
 }
 
 .danger {
-  --bg: var(--error);
-  --bs: var(--shadow-style) var(--error-deep);
+  --btn-color: var(--color-ivory);
+  --btn-bg: var(--error);
+  --btn-edge-color: var(--error-deep);
+  --btn-texture: var(--texture-felt);
 }
 
+/* Sizes */
+
 .sm {
-  --h: 34px;
-  --p: 0px var(--space-sm);
-  --br: var(--radius-sm);
-
-  --d: 3px;
-
-  --f: var(--text-button-sm);
+  --btn-height: 42px;
+  --btn-padding: 0 var(--space-md);
+  --btn-font: var(--text-button-sm);
+  --btn-radius: var(--radius-sm);
 }
 
 .md {
-  --h: 46px;
-  --p: 0px var(--space-md);
-  --br: var(--radius-md);
-
-  --d: 4px;
-
-  --f: var(--text-button-md);
+  --btn-height: 56px;
+  --btn-padding: 0 var(--space-lg);
+  --btn-font: var(--text-button-md);
+  --btn-radius: var(--radius-md);
 }
 
 .lg {
-  --h: 56px;
-  --p: 0px var(--space-lg);
-  --br: var(--radius-lg);
-
-  --d: 5px;
-
-  --f: var(--text-button-lg);
+  --btn-height: 70px;
+  --btn-padding: 0 var(--space-xl);
+  --btn-font: var(--text-button-lg);
+  --btn-radius: var(--radius-lg);
 }

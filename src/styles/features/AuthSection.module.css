@@ -4,10 +4,12 @@
   justify-content: center;
   gap: var(--space-md);
   padding: var(--space-lg) var(--space-lg);
-  background-color: var(--surface);
+  background:
+    linear-gradient(color-mix(in srgb, var(--surface) 85%, transparent)),
+    var(--texture-cardboard), var(--surface);
+  background-blend-mode: normal, multiply;
   border-radius: var(--radius-xl);
-  border: var(--border-style) var(--border);
-  box-shadow: var(--shadow-style-lg) var(--border);
+  box-shadow: var(--elevation-3), var(--rim);
 
   form {
     display: flex;

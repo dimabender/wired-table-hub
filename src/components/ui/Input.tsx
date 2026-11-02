@@ -13,7 +13,7 @@ export default function Input(props: Props) {
   const inputId = id ?? useId();
 
   return (
-    <div className={styles.inputWrapper}>
+    <div className={styles.root}>
       {label && (
         <label htmlFor={inputId} className={styles.label}>
           {label}
